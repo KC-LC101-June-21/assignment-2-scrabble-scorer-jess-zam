@@ -37,6 +37,7 @@ function initialPrompt() {
   console.log("Let's play some scrabble!\n");
   inputWord = input.question("Enter a word: ");
   console.log(oldScrabbleScorer(inputWord));
+  console.log(vowelScore(inputWord));
 }
 
 function simpleLetterScore(inputWord){
@@ -45,9 +46,19 @@ function simpleLetterScore(inputWord){
 }
 
 function vowelScore(inputWord){
-  let vowelCount = inputWord.match(/[aeiou]/gi).length;
-  vowelCount = vowelCount * 3;
-  return vowelCount;
+  let vowelCount = 0;
+  let consonantsCount = 0;
+
+  if(inputWord.match(/[aeiou]/gi).length){
+    vowelCount++;
+    vowelCount = vowelCount * 3;
+  }
+  if(inputWord.match(/[bcdfghjklmnpqrstvwxyz]/gi).length){
+    consonantsCount++;
+  }
+
+  return vowelCount + consonantsCount;
+
 }
 
 let simpleScore = {
