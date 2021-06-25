@@ -23,7 +23,6 @@ function oldScrabbleScorer(word) {
 		 if (oldPointStructure[pointValue].includes(word[i])) {
 			letterPoints += `Points for '${word[i]}': ${pointValue}\n`
 		 }
- 
 	  }
 	}
 	return letterPoints;
@@ -32,17 +31,41 @@ function oldScrabbleScorer(word) {
 // your job is to finish writing these functions and variables that we've named //
 // don't change the names or your program won't work as expected. //
 
+let inputWord = "";
+
 function initialPrompt() {
-   console.log("Let's play some scrabble! Enter a word:");
+  console.log("Let's play some scrabble!\n");
+  inputWord = input.question("Enter a word: ");
+  console.log(oldScrabbleScorer(inputWord));
+}
+
+function simpleLetterScore(inputWord){
+  let letterCount = inputWord.length;
+  return letterCount;
+}
+
+function vowelScore(inputWord){
+  let vowelCount = inputWord.match(/[aeiou]/gi).length;
+  vowelCount = vowelCount * 3;
+  return vowelCount;
+}
+
+let simpleScore = {
+  name: "Simple Score",
+  description: "Each letter is worth 1 point."
 };
 
-let simpleScore;
+let vowelBonusScore = {
+  name: "Bonus Vowels",
+  description: "Vowels are 3 pts, consonants are 1 pt."
+};
 
-let vowelBonusScore;
+let scrabbleScore = {
+  name: "Scrabble",
+  description: "The traditional scoring algorithm."
+};
 
-let scrabbleScore;
-
-const scoringAlgorithms = [];
+const scoringAlgorithms = [simpleScore,vowelBonusScore,scrabbleScore];
 
 function scorerPrompt() {}
 
@@ -69,4 +92,3 @@ module.exports = {
 	runProgram: runProgram,
 	scorerPrompt: scorerPrompt
 };
-
