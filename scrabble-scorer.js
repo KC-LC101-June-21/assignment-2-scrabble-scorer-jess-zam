@@ -18,9 +18,9 @@ function oldScrabbleScorer(word) {
  
 	for (let i = 0; i < word.length; i++) {
  
-	  for (const pointValue in newPointStructure) {
+	  for (const pointValue in oldPointStructure) {
  
-		 if (newPointStructure[pointValue].includes(word[i])) {
+		 if (oldPointStructure[pointValue].includes(word[i])) {
 			letterPoints += `Points for '${word[i]}': ${pointValue}\n`
 		 }
 	  }
@@ -104,7 +104,7 @@ function scorerPrompt() {
     console.log("Score for '" + inputWord + "':" ,scoringAlgorithms[0].scoreFunction(inputWord))
   }
   else if(scoringAlgorithm === '1'){
-    console.log("Score for ''" + inputWord + "':", scoringAlgorithms[1].scoreFunction(inputWord));
+    console.log("Score for '" + inputWord + "':", scoringAlgorithms[1].scoreFunction(inputWord));
   }
   else if(scoringAlgorithm === '2'){
     console.log(scoringAlgorithms[2].scoreFunction(inputWord));
@@ -113,9 +113,9 @@ function scorerPrompt() {
 
 
 function transform(oldPointStructure) {
-  const obj1 = {}
+  const newScore = {}
   for (score in oldPointStructure) {
-    obj1[oldPointStructure[score]] = score;  
+    newScore[oldPointStructure[score]] = score;  
 }
 };
 
