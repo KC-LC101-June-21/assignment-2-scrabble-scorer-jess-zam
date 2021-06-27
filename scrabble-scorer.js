@@ -36,7 +36,6 @@ let inputWord = "";
 function initialPrompt() {
   console.log("Let's play some scrabble!\n");
   inputWord = input.question("Enter a word: ");
-  //console.log(oldScrabbleScorer(inputWord));
 }
 
 function simpleLetterScore(inputWord){
@@ -47,16 +46,22 @@ function simpleLetterScore(inputWord){
 function vowelScore(inputWord){
   let vowelCount = 0;
   let consonantsCount = 0;
+  let score = 0;
 
-  if(inputWord.match(/[aeiou]/gi).length){
-    vowelCount++;
-    vowelCount = vowelCount * 3;
+  const vowels = ['a','e','i','o','u'];
+  for(let char of inputWord){
+    if(vowels.includes(char)){
+      vowelCount++
+    }
+    else if(!vowels.includes(char)){
+      consonantsCount++
+    }
   }
-  if(inputWord.match(/[bcdfghjklmnpqrstvwxyz]/gi).length){
-    consonantsCount++;
-  }
+ 
+  score = (vowelCount * 3) + consonantsCount;
 
-  return vowelCount + consonantsCount;
+  console.log(score);
+  return score;
 
 }
 
@@ -110,7 +115,6 @@ function scorerPrompt() {
     console.log(scoringAlgorithms[2].scoreFunction(inputWord));
   }
 }
-
 
 function transform(oldPointStructure) {
   const newScore = {}
