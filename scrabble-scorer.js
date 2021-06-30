@@ -36,6 +36,7 @@ let inputWord = "";
 function initialPrompt() {
   console.log("Let's play some scrabble!\n");
   inputWord = input.question("Enter a word: ");
+  //console.log(transform(oldPointStructure));
 }
 
 function simpleLetterScore(inputWord){
@@ -118,9 +119,13 @@ function scorerPrompt() {
 
 function transform(oldPointStructure) {
   const newScore = {}
-  for (score in oldPointStructure) {
-    newScore[oldPointStructure[score]] = score;  
-}
+  Object.keys(oldPointStructure).forEach((key)=>{
+        oldPointStructure[key].forEach((character)=>{
+          key = Number(key);
+          newScore[character.toLowerCase()] = key;
+        });
+    });
+    return newScore; 
 };
 
 let newPointStructure = transform(oldPointStructure);
