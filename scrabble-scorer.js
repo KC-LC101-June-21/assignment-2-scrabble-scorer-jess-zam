@@ -73,7 +73,7 @@ function scrabbleScore(inputWord){
   return (score*1);
 }
 
-let scoringAlgorithms = [
+const scoringAlgorithms = [
   (
     {
       name: "Simple Score",
