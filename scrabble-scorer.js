@@ -78,23 +78,19 @@ const scoringAlgorithms = [
     {
       name: "Simple Score",
       description: "Each letter is worth 1 point.",
-      scoreFunction: function (){
-        return simpleScore(inputWord);
-        }
+      scoreFunction: simpleScore
+        
     },
     {
       name: "Bonus Vowels",
       description: "Vowels are 3 pts, consonants are 1 pt.",
-      scoreFunction: function (){
-      return vowelBonusScore(inputWord);
-      }
+      scoreFunction: vowelBonusScore
+      
     },
     {
       name: "Scrabble",
       description: "The traditional scoring algorithm.",
-      scoreFunction: function (){
-      return scrabbleScore(inputWord);
-      }
+      scoreFunction: scrabbleScore
     }  
 ];
 
@@ -124,27 +120,27 @@ const scoringAlgorithms = [
 // };
 
 function scorerPrompt() {
-  let scoringAlgorithm;
+  let scoringRequest;
   console.log(`Which scoring algorithm would you like to use?
 
 0 - Simple: One point per character
 1 - Vowel Bonus: Vowels are worth 3 points
 2 - Scrabble: Uses scrabble point system`)
-  scoringAlgorithm = input.question("Enter 0, 1, or 2: ");
-  scoringAlgorithm = Number(scoringAlgorithm);
+  scoringRequest = input.question("Enter 0, 1, or 2: ");
+  scoringRequest = Number(scoringRequest);
 
-  while(scoringAlgorithm !== 0 && scoringAlgorithm !== 1 && scoringAlgorithm !== 2){
-    scoringAlgorithm = input.question("Enter 0, 1, or 2: ");
-  }
+  // while(scoringAlgorithm !== 0 && scoringAlgorithm !== 1 && scoringAlgorithm !== 2){
+  //   scoringAlgorithm = input.question("Enter 0, 1, or 2: ");
+  // }
   
-  if(scoringAlgorithm === 0){
+  if(scoringRequest === 0){
     //simpleLetterScore(inputWord);
     console.log("Score for '" + inputWord + "':" ,scoringAlgorithms[0].scoreFunction(inputWord))
   }
-  else if(scoringAlgorithm === 1){
+  else if(scoringRequest === 1){
     console.log("Score for '" + inputWord + "':", scoringAlgorithms[1].scoreFunction(inputWord));
   }
-  else if(scoringAlgorithm === 2){
+  else if(scoringRequest === 2){
     console.log("Score for '" + inputWord + "':",scoringAlgorithms[2].scoreFunction(inputWord));
   }
 }
