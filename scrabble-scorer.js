@@ -63,30 +63,54 @@ function vowelBonusScore(inputWord){
 
 }
 
-let simpleScorer = {
+let scoringOptions = [
+  ({
   name: "Simple Score",
   description: "Each letter is worth 1 point.",
   scoreFunction: function (){
     return simpleLetterScore(inputWord);
-  }
-};
-
-let vowelScore = {
+  }}),
+  ({
   name: "Bonus Vowels",
   description: "Vowels are 3 pts, consonants are 1 pt.",
   scoreFunction: function (){
     return vowelBonusScore(inputWord);
-  }
-};
-
-let scrabblerScore = {
-  name: "Scrabble",
+  }}),
+  ({
+    name: "Scrabble",
   description: "The traditional scoring algorithm.",
   scoreFunction: function (){
     
     return scrabbleScore(inputWord);
-  }
-};
+  }}
+  )
+
+]
+
+// let simpleScorer = {
+//   name: "Simple Score",
+//   description: "Each letter is worth 1 point.",
+//   scoreFunction: function (){
+//     return simpleLetterScore(inputWord);
+//   }
+// };
+
+// let vowelScore = {
+//   name: "Bonus Vowels",
+//   description: "Vowels are 3 pts, consonants are 1 pt.",
+//   scoreFunction: function (){
+//     return vowelBonusScore(inputWord);
+//   }
+// };
+
+// let scrabblerScore = {
+//   name: "Scrabble",
+//   description: "The traditional scoring algorithm.",
+//   scoreFunction: function (){
+    
+//     return scrabbleScore(inputWord);
+//   }
+// };
 let letter;
 
 function scrabbleScore(inputWord){
@@ -100,7 +124,7 @@ return (score*1);
 }
 
 
-const scoringAlgorithms = [simpleScorer,vowelScore,scrabblerScore];
+const scoringAlgorithms = scoringOptions;
 
 function scorerPrompt() {
   let scoringAlgorithm;
