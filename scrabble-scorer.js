@@ -12,22 +12,6 @@ const oldPointStructure = {
   10: ['Q', 'Z']
 };
 
-// function oldScrabbleScorer(word) {
-// 	word = word.toUpperCase();
-// 	let letterPoints = "";
- 
-// 	for (let i = 0; i < word.length; i++) {
- 
-// 	  for (const pointValue in oldPointStructure) {
- 
-// 		 if (oldPointStructure[pointValue].includes(word[i])) {
-// 			letterPoints += `Points for '${word[i]}': ${pointValue}\n`
-// 		 }
-// 	  }
-// 	}
-// 	return letterPoints;
-//  }
-
 // your job is to finish writing these functions and variables that we've named //
 // don't change the names or your program won't work as expected. //
 
@@ -94,31 +78,6 @@ const scoringAlgorithms = [
     }  
 ];
 
-// let simpleScorer = {
-//   name: "Simple Score",
-//   description: "Each letter is worth 1 point.",
-//   scoreFunction: function (){
-//     return simpleLetterScore(inputWord);
-//   }
-// };
-
-// let vowelScore = {
-//   name: "Bonus Vowels",
-//   description: "Vowels are 3 pts, consonants are 1 pt.",
-//   scoreFunction: function (){
-//     return vowelBonusScore(inputWord);
-//   }
-// };
-
-// let scrabblerScore = {
-//   name: "Scrabble",
-//   description: "The traditional scoring algorithm.",
-//   scoreFunction: function (){
-    
-//     return scrabbleScore(inputWord);
-//   }
-// };
-
 function scorerPrompt() {
   let scoringRequest;
   console.log(`Which scoring algorithm would you like to use?
@@ -129,19 +88,16 @@ function scorerPrompt() {
   scoringRequest = input.question("Enter 0, 1, or 2: ");
   scoringRequest = Number(scoringRequest);
 
-  // while(scoringAlgorithm !== 0 && scoringAlgorithm !== 1 && scoringAlgorithm !== 2){
-  //   scoringAlgorithm = input.question("Enter 0, 1, or 2: ");
-  // }
-  
+
   if(scoringRequest === 0){
     //simpleLetterScore(inputWord);
-    console.log("Score for '" + inputWord + "':" ,scoringAlgorithms[0].scoreFunction(inputWord))
+    console.log("Score for '" + inputWord + "':" ,scoringAlgorithms[0].scoringFunction(inputWord))
   }
   else if(scoringRequest === 1){
-    console.log("Score for '" + inputWord + "':", scoringAlgorithms[1].scoreFunction(inputWord));
+    console.log("Score for '" + inputWord + "':", scoringAlgorithms[1].scoringFunction(inputWord));
   }
   else if(scoringRequest === 2){
-    console.log("Score for '" + inputWord + "':",scoringAlgorithms[2].scoreFunction(inputWord));
+    console.log("Score for '" + inputWord + "':",scoringAlgorithms[2].scoringFunction(inputWord));
   }
 }
 
