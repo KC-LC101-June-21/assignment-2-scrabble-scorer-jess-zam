@@ -74,7 +74,7 @@ function scrabbleScore(inputWord){
 }
 
 let scoringOptions = [
-  (
+  Object(
     {
       name: "Simple Score",
       description: "Each letter is worth 1 point.",
@@ -83,7 +83,7 @@ let scoringOptions = [
         }
     }
   ),
-  (
+  Object(
     {
       name: "Bonus Vowels",
       description: "Vowels are 3 pts, consonants are 1 pt.",
@@ -92,7 +92,7 @@ let scoringOptions = [
       }
     }
   ),
-  (
+  Object(
     {
       name: "Scrabble",
       description: "The traditional scoring algorithm.",
