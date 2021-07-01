@@ -36,7 +36,6 @@ let inputWord = "";
 function initialPrompt() {
   console.log("Let's play some scrabble!\n");
   inputWord = input.question("Enter a word: ");
-  //console.log(transform(oldPointStructure));
 }
 
 function simpleLetterScore(inputWord){
@@ -82,15 +81,27 @@ let vowelBonusScore = {
   }
 };
 
-let scrabbleScore = {
+let scrabblerScore = {
   name: "Scrabble",
   description: "The traditional scoring algorithm.",
   scoreFunction: function (){
-    return oldScrabbleScorer(inputWord);
+    
+    return scrabbleScore(inputWord);
   }
 };
+let letter;
 
-const scoringAlgorithms = [simpleScore,vowelBonusScore,scrabbleScore];
+function scrabbleScore(inputWord){
+let score = 0
+for (i = 0; i < inputWord.length; i++) {
+    letter = inputWord[i];
+    score += newPointStructure[letter];
+}
+return (score*1);
+}
+
+
+const scoringAlgorithms = [simpleScore,vowelBonusScore,scrabblerScore];
 
 function scorerPrompt() {
   let scoringAlgorithm;
@@ -100,20 +111,21 @@ function scorerPrompt() {
 1 - Vowel Bonus: Vowels are worth 3 points
 2 - Scrabble: Uses scrabble point system`)
   scoringAlgorithm = input.question("Enter 0, 1, or 2: ");
+  scoringAlgorithm = Number(scoringAlgorithm);
 
-  while(scoringAlgorithm !== '0' && scoringAlgorithm !=='1' && scoringAlgorithm !=='2'){
+  while(scoringAlgorithm !== 0 && scoringAlgorithm !== 1 && scoringAlgorithm !== 2){
     scoringAlgorithm = input.question("Enter 0, 1, or 2: ");
   }
   
-  if(scoringAlgorithm === '0'){
+  if(scoringAlgorithm === 0){
     //simpleLetterScore(inputWord);
     console.log("Score for '" + inputWord + "':" ,scoringAlgorithms[0].scoreFunction(inputWord))
   }
-  else if(scoringAlgorithm === '1'){
+  else if(scoringAlgorithm === 1){
     console.log("Score for '" + inputWord + "':", scoringAlgorithms[1].scoreFunction(inputWord));
   }
-  else if(scoringAlgorithm === '2'){
-    console.log(scoringAlgorithms[2].scoreFunction(inputWord));
+  else if(scoringAlgorithm === 2){
+    console.log("Score for '" + inputWord + "':",scoringAlgorithms[2].scoreFunction(inputWord));
   }
 }
 
@@ -127,6 +139,7 @@ function transform(oldPointStructure) {
     });
     return newScore; 
 };
+
 
 let newPointStructure = transform(oldPointStructure);
 
