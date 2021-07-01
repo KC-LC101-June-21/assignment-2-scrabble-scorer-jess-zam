@@ -38,12 +38,12 @@ function initialPrompt() {
   inputWord = input.question("Enter a word: ");
 }
 
-function simpleLetterScore(inputWord){
+function simpleScore(inputWord){
   let letterCount = inputWord.length;
   return letterCount;
 }
 
-function vowelScore(inputWord){
+function vowelBonusScore(inputWord){
   let vowelCount = 0;
   let consonantsCount = 0;
   let score = 0;
@@ -63,7 +63,7 @@ function vowelScore(inputWord){
 
 }
 
-let simpleScore = {
+let simpleScorer = {
   name: "Simple Score",
   description: "Each letter is worth 1 point.",
   scoreFunction: function (){
@@ -71,11 +71,11 @@ let simpleScore = {
   }
 };
 
-let vowelBonusScore = {
+let vowelScore = {
   name: "Bonus Vowels",
   description: "Vowels are 3 pts, consonants are 1 pt.",
   scoreFunction: function (){
-    return vowelScore(inputWord);
+    return vowelBonusScore(inputWord);
   }
 };
 
@@ -100,7 +100,7 @@ return (score*1);
 }
 
 
-const scoringAlgorithms = [simpleScore,vowelBonusScore,scrabblerScore];
+const scoringAlgorithms = [simpleScorer,vowelScore,scrabblerScore];
 
 function scorerPrompt() {
   let scoringAlgorithm;
